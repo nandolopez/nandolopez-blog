@@ -1,4 +1,3 @@
-import { useEffect, useState } from "preact/hooks";
 import type { FunctionalComponent } from "preact";
 
 export default function DarkModeToggler(): FunctionalComponent {
