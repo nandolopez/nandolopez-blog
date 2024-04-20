@@ -1,28 +1,25 @@
 ---
 import HeaderLink from "../HeaderLink.astro";
 import { Image } from 'astro:assets';
-import myImage from '../../assets/Logo.svg';
-import DarkModeToggler from "../dedicated/DarkModeToggler";
+import Logo from '../../assets/Logo.svg';
+import ButtonDarkMode from "../react/ButtonDarkMode";
 //import { SITE_TITLE } from '../consts';
 
 
 ---
 
 <header>
-	<nav class="flex justify-between">
+	<nav class="bg-sky-300 dark:bg-indigo-950 flex justify-between items-center p-4 rounded-lg">
 		<h2>
 			<a href="/">
-				<Image src={myImage} alt="A description of my image." class="w-16"/>
+				<Image src={Logo} alt="A description of my image." class="w-12 rounded-lg"/>
 			</a>
 		</h2>
-		<div class="internal-links">
+		<input type="search" class="border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent">
+		<div class="flex gap-4 items-center">
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="flex">
-			<DarkModeToggler>
+			<HeaderLink href="/contact">Contact</HeaderLink>
+			<ButtonDarkMode client:load >
 		</div>
 	</nav>
 </header>
-<style></style>
