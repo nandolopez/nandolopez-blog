@@ -3,40 +3,51 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../FormattedDate.astro";
 
 interface Props {
-	page?: number;
+  page?: string;
 }
 
 const { page } = Astro.props;
 
-const Posts = (await getCollection('blog')).sort(
-    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-)
+const CurrentPage: number = parseInt(page ?? "1") ;
 
-const CurrentPage = page ?? 0
-const TotalPages = Math.ceil(Posts.length / CurrentPage)
+let start: number = 10 * (CurrentPage - 1);
 
-const Offset = 10 * (CurrentPage - 1)
-const PaginatedItems = Posts.slice(Offset, 10 * CurrentPage)
+if (CurrentPage < 1) start = 1;
 
-const HaveMorePages = CurrentPage <= TotalPages
-const FirstPage = CurrentPage === 0
+const End: number = start + 10;
+
+const Posts = (await getCollection("blog"))
+  .slice(start, End)
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+
+const TotalPages = Math.ceil(Posts.length / CurrentPage);
+
+const NextPageNumber: number = CurrentPage + 1;
+const PreviousPageNumber: number = CurrentPage - 1;
+const NextPage = "/page/" + NextPageNumber;
+const PreviousPage = CurrentPage === 2 ? "/" : "/page/" + PreviousPageNumber;
+
+const IfHaveMorePages = CurrentPage < TotalPages;
+const IfIsFirstPage = CurrentPage > 1;
 ---
 
-<section class="flex flex-col gap-4 w-full">
-    <h3 class="text-3xl">Last Posts</h3>
-    {
-        PaginatedItems.map((post) => (
-            <article class="bg-sky-100 dark:bg-blue-950 p-4 rounded-xl">
-                <a href={`/blog/${post.slug}/`}>							
-                    <h4 class="text-2xl">{post.data.title}</h4>
-                    <p >{post.data.description}</p>
-                    <p class="date">
-                        <FormattedDate date={post.data.pubDate} />
-                    </p>
-                </a>
-            </article>
-        ))
-    }
-    { FirstPage && <a href="#">Previous page</a> }
-    { HaveMorePages && <a href="#">More posts</a> }
+<section class="flex flex-col gap-2 w-full">
+  <h3 class="text-3xl">Last Posts</h3>
+  {
+    Posts.map((post) => (
+      <article class="bg-sky-100 dark:bg-blue-950 px-4 py-2 rounded-xl">
+        <a href={`/blog/${post.slug}/`}>
+          <h4 class="text-2xl">{post.data.title}</h4>
+          <p>{post.data.description}</p>
+          <p class="date">
+            <FormattedDate date={post.data.pubDate} />
+          </p>
+        </a>
+      </article>
+    ))
+  }
+  <div class="flex justify-between w-full">
+    {IfIsFirstPage && <a href={PreviousPage}>Previous page</a>}
+    {IfHaveMorePages && <a href={NextPage}>More posts</a>}
+  </div>
 </section>
