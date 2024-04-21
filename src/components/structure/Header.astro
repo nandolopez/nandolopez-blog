@@ -3,9 +3,6 @@ import HeaderLink from "../HeaderLink.astro";
 import { Image } from 'astro:assets';
 import Logo from '../../assets/Logo.svg';
 import ButtonDarkMode from "../react/ButtonDarkMode";
-//import { SITE_TITLE } from '../consts';
-
-
 ---
 
 <header>
@@ -15,7 +12,9 @@ import ButtonDarkMode from "../react/ButtonDarkMode";
 				<Image src={Logo} alt="A description of my image." class="w-12 rounded-lg"/>
 			</a>
 		</h2>
-		<input type="search" class="border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent">
+		<div>
+			<input type="search" class="border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent">
+		</div>
 		<div class="flex gap-4 items-center">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/contact">Contact</HeaderLink>
