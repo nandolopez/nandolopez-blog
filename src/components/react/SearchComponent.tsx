@@ -41,22 +41,24 @@ const SearchComponent = ({ posts }: any) => {
   });
 
   return (
-    <>
+    <div className="flex flex-col">
       <input
         type="search"
         onChange={($event) => onchange($event)}
         onBlur={onBlurSearchInput}
         onFocus={onFocusSearchInput}
         list="query"
-        className="bg-white border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent"
+        className="bg-slate-300 border-none dark:border-sky-200 px-4 py-1 rounded-full text-black"
       />
+      <div id="searchResults" className="relative hidden md:w-full w-85 z-10">
       <div
-        id="searchResults"
-        className="absolute bg-white flex flex-col hidden mt-2 rounded text-black z-10"
+        className="absolute bg-white flex flex-col  mt-2 rounded text-black"
       >
         {showQueryResults}
       </div>
-    </>
+
+      </div>
+    </div>
   );
 };
 

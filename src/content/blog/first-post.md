@@ -1,5 +1,5 @@
 ---
-title: First post
+title: Primera entrada, esto es un ejemplo de una entrada con un título largo para probar que esto funciona
 description: first_post description
 publication_date: 2024-04-01
 update_date: 2024-04-01
