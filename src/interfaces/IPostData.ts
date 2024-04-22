@@ -5,5 +5,8 @@ export interface IPostData {
     meta_title:string;
     meta_description:string;
     topic:string
-    update_date: string
+    update_date: string;
+    tags: string;
+    thumbnail:string;
+    status: string;
 }

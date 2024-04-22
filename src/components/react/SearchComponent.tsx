@@ -1,60 +1,61 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SearchComponent = ({ posts }: any) => {
- 
+  const [query, setQuery] = useState<any[]>([]);
 
-  useEffect(()=>{ console.log(posts)},[])
+  const onBlurSearchInput = () => {
+    document.getElementById("searchResults")?.classList.add("hidden");
+  };
+  const onFocusSearchInput = () => {
+    document.getElementById("searchResults")?.classList.remove("hidden");
+  };
 
+  const onchange = (event: any) => {
+    const input = event.target.value.toLowerCase();
 
-  const [searchResutls, setSearchResults] = useState<any[]>()
+    //make disappear search results if search input is clean
+    if (input.length === 0) onBlurSearchInput();
 
-  const onInputSearchInput = (event: any) => {
-
-    const input = event.target.value.toLowerCase()
-    
-    const results = posts.filter((element: any) =>{
-      return (  
+    const results = posts.filter((element: any) => {
+      return (
         element.title.toLowerCase().includes(input) ||
         element.description.toLowerCase().includes(input) ||
         element.slug.toLowerCase().includes(input)
-      )
+      );
     });
-    
-    console.log(results)
-    
 
-    setSearchResults(results)
-    
+    setQuery(results);
   };
 
-  const setResults = () =>{
-    if(searchResutls.length > 0) {
-      return (
-          <div className="bt-white flex flex-col gap-2 p-4 z-10">
-              {
-              searchResutls.map((post:any) => {
-                  return (
-                    <a href={`/blog/${post.slug}/`}>
-                      <h4>{post.data.title}</h4>
-                      <p>{post.data.description}</p>
-                    </a>
-                  );
-                })
-              }
-          </div>
-      )
-    }
-  }
+  const showQueryResults = query.map((post: any, index: number) => {
+    return (
+      <a
+        key={index}
+        href={`/blog/${post.slug}/`}
+        className="border-b-2 border-b-slate-700 hover:bg-indigo-900 hover:text-white p-4 rounded"
+      >
+        <h4>{post.title}</h4>
+        <p>{post.description}</p>
+      </a>
+    );
+  });
 
   return (
     <>
       <input
         type="search"
-        onInput={($event) => onInputSearchInput($event)}
-        list="searchResults"
-        className="border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent"
+        onChange={($event) => onchange($event)}
+        onBlur={onBlurSearchInput}
+        onFocus={onFocusSearchInput}
+        list="query"
+        className="bg-white border border-indigo-950 dark:border-sky-200 px-4 py-2 rounded-full text-black bg-transparent"
       />
-      { setResults() }
+      <div
+        id="searchResults"
+        className="absolute bg-white flex flex-col hidden mt-2 rounded text-black z-10"
+      >
+        {showQueryResults}
+      </div>
     </>
   );
 };

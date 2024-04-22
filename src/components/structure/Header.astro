@@ -6,9 +6,14 @@ import ButtonDarkMode from "../react/ButtonDarkMode";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
 
-const Posts = (await getCollection("blog")).map((post: any) => {
+
+const Posts = (await getCollection("blog")).map((post: any, index: number) => {
   const data = post.data;
-  return { title: data.title, description: data.description, slug: data.slug };
+  return {
+    title: data.title,
+    description: data.description,
+    slug: post.slug
+  };
 });
 ---
 
