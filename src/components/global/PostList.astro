@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import FormattedDate from "../FormattedDate.astro";
 
 interface Props {
+  Collection: any;
   page?: string;
 }
 
-const { page } = Astro.props;
+const { page , Collection} = Astro.props;
 
 const CurrentPage: number = parseInt(page ?? "1") ;
 
@@ -16,9 +16,9 @@ if (CurrentPage < 1) start = 1;
 
 const End: number = start + 10;
 
-const Posts = (await getCollection("blog"))
+const Posts = Collection
   .slice(start, End)
-  .sort((a, b) => a.data.publication_date.valueOf() - b.data.publication_date.valueOf());
+  .sort((a:any, b:any) => a.data.publication_date.valueOf() - b.data.publication_date.valueOf());
 
 const TotalPages = Math.ceil(Posts.length / CurrentPage);
 
@@ -32,9 +32,9 @@ const IfIsFirstPage = CurrentPage > 1;
 ---
 
 <section class="flex flex-col gap-2 w-full">
-  <h3 class="text-3xl">Last Posts</h3>
+ 
   {
-    Posts.map((post) => (
+    Posts.map((post:any) => (
       <article class="bg-sky-100 dark:bg-blue-950 px-4 py-2 rounded-xl">
         <a href={`/blog/${post.slug}/`}>
           <h4 class="text-2xl">{post.data.title}</h4>

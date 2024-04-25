@@ -15,10 +15,10 @@ const { title, description } = Astro.props;
   </head>
 
   <body class="bg-sky-100 dark:bg-slate-900 dark:text-white w-full">
-    <div class="flex flex-col justify-between min-h-dvh w-full">
+    <div class="flex flex-col gap-4 justify-between min-h-dvh w-full">
       <Header class="h-10" />
       <main
-        class="h-fullp flex flex-col justify-center items-center"
+        class="container flex flex-col gap-4 h-full mx-auto"
       >
         <slot />
       </main>

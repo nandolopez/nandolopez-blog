@@ -5,27 +5,58 @@ import Logo from "../../assets/Logo.svg";
 import ButtonDarkMode from "../react/ButtonDarkMode";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
-import LanguageSwitcherComponent from "../react/LanguageSwitcherComponent";
 import MenuIcon from "../../assets/Menu.svg";
 
 // Menu translations
-const links_es = {
-  home: "Inicio",
-  blog: "Blog",
-  projects: "Proyectos",
-  social: "Redes sociales",
-  about: "Sobre mi",
-};
 
-const links_en = {
-  home: "Home",
-  blog: "Blog",
-  projects: "Projects",
-  social: "Social media",
-  about: "About me",
-};
+const links_es = [
+  {
+    link: "Inicio",
+    href: "/es",
+  },
+  {
+    link: "Blog",
+    href: "/es/blog",
+  },
+  {
+    link: "Proyectos",
+    href: "/es/proyectos",
+  },
+  {
+    link: "Redes Sociales",
+    href: "/contact",
+  },
+  {
+    link: "Sobre mi",
+    href: "/es/sobre-mi",
+  },
+];
 
-const translation = Astro.url.href.includes("/es") ? links_es : links_en;
+const links_en = [
+  {
+    link: "Home",
+    href: "/",
+  },
+  {
+    link: "Blog",
+    href: "/blog",
+  },
+  {
+    link: "Projects",
+    href: "/projects",
+  },
+  {
+    link: "Redes Sociales",
+    href: "/contact",
+  },
+  {
+    link: "Sobre mi",
+    href: "/about",
+  },
+];
+
+const isNavigatorInSpanish = Astro.url.pathname.includes("/es");
+const Links = isNavigatorInSpanish ? links_es : links_en;
 //const blog_collection = Astro.url.href.includes("/es") ? "blog_en" : "blog_es";
 
 //Get all posts for
@@ -57,32 +88,27 @@ const Posts = (await getCollection("blog")).map((post: any, index: number) => {
       for="navbar-open"
     >
       <span class="sr-only">Open main menu</span>
-      <img src={ MenuIcon.src } alt="Open menu" class="w-12"/>
+      <img src={MenuIcon.src} alt="Open menu" class="w-12" />
     </label>
 
     <nav
       class="bottom-48 bg-gradient-to-r from-cyan-300 to-indigo-800 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-70 peer-checked:mr-4 text-right right-4 rounded-xl z-10"
     >
-      <HeaderLink class="block md:p-0 px-4" href="/"
-        >{translation.home}</HeaderLink
-      >
-      <HeaderLink class="block md:p-0 px-4" href="/blog"
-        >{translation.blog}</HeaderLink
-      >
-      <HeaderLink class="block md:p-0 px-4" href="/projects"
-        >{translation.projects}</HeaderLink
-      >
-      <HeaderLink class="block md:p-0 px-4" href="/social-media"
-        >{translation.social}</HeaderLink
-      >
-      <HeaderLink class="block md:p-0 px-4" href="/about"
-        >{translation.about}</HeaderLink
-      >
+      {
+        Links.map((link) => {
+          return (
+            <HeaderLink class="block md:p-0 px-4" href={link.href}>
+              {link.link}
+            </HeaderLink>
+          );
+        })
+      }
     </nav>
     <SearchComponent client:load posts={Posts} />
     <ButtonDarkMode client:load />
     <div class="flex gap-4 items-center justify-center md:w-auto w-full">
-      <LanguageSwitcherComponent client:load />
+      <a href="/" class:list={[{ "font-bold": !isNavigatorInSpanish }]}> EN</a> |
+      <a href="/es" class:list={[{ "font-bold": isNavigatorInSpanish }]}> ES</a>
     </div>
   </div>
 </header>

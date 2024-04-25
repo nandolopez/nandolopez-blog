@@ -1,5 +1,13 @@
 ---
+import BlogPage from "../../components/pages/BlogPage.astro";
 import Layout from "../../layouts/default.astro";
+
+const translation = {
+  h1_title: "Últimas publicaciones",
+  h2_subtitle:"I'm expert in craft amazing sites with modern javascript technologies",
+  btnNext: "Ver publicaciones más antiguas",
+  btnBack: "Volver a publicaciones más recientes",
+}
 ---
 
 <Layout
@@ -7,5 +15,5 @@ import Layout from "../../layouts/default.astro";
   description="Lorem ipsum dolor sit amet"
   publication_date={new Date("August 08 2021")}
 >
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur doloremque, porro provident facere quas illo tempora. Quaerat consectetur eum eligendi, possimus aut, sunt culpa recusandae nostrum veniam neque id! Nulla!
+<BlogPage translation={translation}/>
 </Layout>

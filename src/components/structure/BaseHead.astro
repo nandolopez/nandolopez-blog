@@ -1,4 +1,4 @@
----
+as---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 
@@ -83,17 +83,4 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 	
 	//Saving dark mode status
 	localStorage.setItem("DarkMode", isDarkMode.toString());
-	
-	
-	/**
-	 * USER LANGUAGE LOGIC
-	 */
-	//Check if default browser has spanish
-	let hasSpanishLanguage = navigator.language.includes('es')
-
-	if(localStorage.getItem("language") === null){
-		const defaultLang:string = hasSpanishLanguage ? 'es' : 'en';
-		localStorage.setItem("language",defaultLang)
-	}
-
 </script>
