@@ -5,38 +5,98 @@ import Logo from "../../assets/Logo.svg";
 import ButtonDarkMode from "../react/ButtonDarkMode";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
+import LanguageSwitcherComponent from "../react/LanguageSwitcherComponent";
 
+// Menu translations
+const links_es = {
+  home: "Inicio",
+  blog: "Blog",
+  projects: "Proyectos",
+  social: "Redes sociales",
+  about: "Sobre mi",
+};
 
+const links_en = {
+  home: "Home",
+  blog: "Blog",
+  projects: "Projects",
+  social: "Social media",
+  about: "About me",
+};
+
+const translation = Astro.url.href.includes("/es") ? links_es : links_en;
+//const blog_collection = Astro.url.href.includes("/es") ? "blog_en" : "blog_es";
+
+//Get all posts for
 const Posts = (await getCollection("blog")).map((post: any, index: number) => {
   const data = post.data;
   return {
     title: data.title,
     description: data.description,
-    slug: post.slug
+    slug: post.slug,
   };
 });
 ---
 
+
 <header>
-  <nav
-    class="bg-sky-300 dark:bg-indigo-950 flex justify-between items-center p-2 rounded-lg"
+  <div
+    class="container mx-auto flex flex-wrap gap-4 justify-between items-center p-4"
   >
-    <h2>
-      <a href="/">
-        <Image
-          src={Logo}
-          alt="A description of my image."
-          class="w-12 rounded-lg"
-        />
-      </a>
-    </h2>
-    <div>
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/contact">Contact</HeaderLink>
-    </div>
+    <a href="/" class="w-auto">
+      <Image
+        src={Logo}
+        alt="A description of my image."
+        class="w-12 rounded-lg"
+      />
+    </a>
+
+    <input type="checkbox" class="peer hidden" id="navbar-open" />
+<label
+class="bg-gradient-to-r from-teal-500 to-green-900 hover:from-teal-900 hover:to-cyan-500 bottom-24 border-2 fixed md:hidden p-6 right-10 rounded-full"
+for="navbar-open">
+  <span class="sr-only">Open main menu</span>
+  <svg
+    class="w-5 h-5"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 17 14"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M1 1h15M1 7h15M1 13h15"></path>
+  </svg>
+</label>
+
+    <nav
+      class="fixed peer-checked:mb-4 mb-[calc(-100%)] md:relative md:z-0 transition-all duration-1000 flex flex-col font-medium md:flex-row md:mt-0 md:bottom-auto md:right-auto md:mb-auto md:space-x-8 text-right xl:text-left z-10 right-4 bottom-48 bg-indigo-800 opacity-70 rounded-xl p-4 md:bg-transparent"
+    >
+      <HeaderLink class="mb-2 xl:mb-auto" href="/"
+        >{translation.home}</HeaderLink
+      >
+      <HeaderLink class="mb-2 xl:mb-auto" href="/blog"
+        >{translation.blog}</HeaderLink
+      >
+      <HeaderLink class="mb-2 xl:mb-auto" href="/projects"
+        >{translation.projects}</HeaderLink
+      >
+      <HeaderLink class="mb-2 xl:mb-auto" href="/social-media"
+        >{translation.social}</HeaderLink
+      >
+      <HeaderLink class="mb-2 xl:mb-auto" href="/about"
+        >{translation.about}</HeaderLink
+      >
+    </nav>
     <div class="flex gap-4 items-center">
-      <ButtonDarkMode client:load />
       <SearchComponent client:load posts={Posts} />
+      <ButtonDarkMode client:load />
+      <LanguageSwitcherComponent client:load />
     </div>
-  </nav>
+  </div>
 </header>
+
+

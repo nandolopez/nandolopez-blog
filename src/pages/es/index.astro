@@ -1,0 +1,20 @@
+---
+import HomePage from "../../components/pages/HomePage.astro";
+import Layout from "../../layouts/default.astro";
+
+const translation = {
+  h1_title: "🙋🏻‍♂️ Bienvenido/a a mi portfolio",
+  h2_subtitle:"Soy experto en crear sitios increíbles utilizando tecnologías modernas",
+  btn_projects: "Mis proyectos",
+  btn_blog: "Échale un ojo a mi blog",
+  btn_contact: "¿Hablamos?",
+}
+---
+
+<Layout
+  title="Nando López - Web developer"
+  description="Web developer frontend expert in user interface"
+  publication_date={new Date('2024-04-23')}
+>
+<HomePage translation={translation}/>
+</Layout>

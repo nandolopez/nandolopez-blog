@@ -1,16 +1,20 @@
 ---
-
-
-import PostList from "../components/global/PostList.astro";
+import HomePage from "../components/pages/HomePage.astro";
 import Layout from "../layouts/default.astro";
 
+const translation = {
+  h1_title: "🙋🏻‍♂️ Wellcome to my portfolio",
+  h2_subtitle:"I'm expert in craft amazing sites with modern javascript technologies",
+  btn_projects: "See my projects",
+  btn_blog: "take a look to my blog",
+  btn_contact: "let's talk",
+}
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date("August 08 2021")}
-	heroImage="/blog-placeholder-about.jpg"
+  title="About Me"
+  description="Lorem ipsum dolor sit amet"
+  publication_date={new Date("August 08 2021")}
 >
-<PostList />
+<HomePage translation={translation}/>
 </Layout>

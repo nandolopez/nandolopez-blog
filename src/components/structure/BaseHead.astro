@@ -60,6 +60,10 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <script>
+	
+	/**
+	 * LIGHT / DARK MODE LOGIC
+	 */
 
 	// Getting dark mode from user settings
 	let isDarkMode: boolean = window.matchMedia("(prefers-color-scheme: dark)",).matches;
@@ -67,18 +71,29 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 	// We asume at first time that user is light mode
 	document.documentElement.classList.remove("dark");
 
-	// Check if has previous settings regarding dark mode status
-	if ( typeof localStorage !== "undefined" && localStorage.getItem("DarkMode")) {
-		// Set up dark mode
-		isDarkMode = localStorage.getItem("DarkMode") === "true";
-	}
+	// If have a preference for previous access, set the preference
+	if(localStorage.getItem("DarkMode") !== null)
+		isDarkMode = localStorage.getItem("DarkMode") === "true"
 	
-	// If dark mode is active...
+		// If dark mode is active...
 	if (isDarkMode) {
 		//Set dark mode
 		window.document.documentElement.classList.add("dark");
 	}
-
+	
 	//Saving dark mode status
 	localStorage.setItem("DarkMode", isDarkMode.toString());
+	
+	
+	/**
+	 * USER LANGUAGE LOGIC
+	 */
+	//Check if default browser has spanish
+	let hasSpanishLanguage = navigator.language.includes('es')
+
+	if(localStorage.getItem("language") === null){
+		const defaultLang:string = hasSpanishLanguage ? 'es' : 'en';
+		localStorage.setItem("language",defaultLang)
+	}
+
 </script>
