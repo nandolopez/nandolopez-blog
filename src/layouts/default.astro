@@ -7,22 +7,22 @@ import Footer from "../components/structure/Footer.astro";
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description } = Astro.props;
-
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		
-	</head>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body
-		class="bg-sky-200 dark:bg-slate-900 dark:text-white flex flex-col justify-between min-h-dvh w-full"
-	>
-		<Header class="h-10" />
-		<main  class="h-dvh flex flex-col justify-center items-center sm:mx-4 mx-12">
-			<slot />
-		</main>
-		<Footer class="" />
-	</body>
+  <body class="bg-sky-200 dark:bg-slate-900 dark:text-white w-full">
+    <div class="flex flex-col justify-between min-h-dvh w-full">
+      <Header class="h-10" />
+      <main
+        class="h-fullp flex flex-col justify-center items-center sm:mx-4 mx-12"
+      >
+        <slot />
+      </main>
+      <Footer class="" />
+    </div>
+  </body>
 </html>

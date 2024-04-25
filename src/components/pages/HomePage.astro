@@ -6,11 +6,15 @@ interface Props {
 const { translation } = Astro.props;
 ---
 
-<div class="container flex-col md:flex flex-wrap h-full gap-4 justify-around px-8 w-full">
-  <article class="flex flex-col gap-8 justify-center pr-4 md:col-span-2 ">
+<div
+  class="container flex  flex-wrap h-full gap-4 justify-around px-8 w-full"
+>
+  <article class="flex flex-col gap-8 justify-center pr-4">
     <h1 class="text-4xl font-bold">{translation.h1_title}</h1>
     <h2 class="text-3xl">{translation.h2_subtitle}</h2>
-    <div class="flex flex-col gap-6 justify-around md:flex-col md:items-start xl:flex-row">
+    <div
+      class="flex flex-col gap-6 justify-around md:flex-col md:items-start xl:flex-row"
+    >
       <a
         href="#"
         class="bg-gradient-to-r from-cyan-500 to-indigo-900 hover:from-indigo-900 hover:to-cyan-500 flex font-bold text-center rounded-md px-4 py-2"
@@ -28,7 +32,7 @@ const { translation } = Astro.props;
       >
     </div>
   </article>
-  <article class="flex justify-center items-center h-full">
-    <img src="https://picsum.photos/200/300" class="block w-full h-auto" alt="" />
+  <article class="flex h-full justify-center items-center">
+    <img src="https://picsum.photos/200/300" class="block h-auto" alt="" />
   </article>
 </div>
