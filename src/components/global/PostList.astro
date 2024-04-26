@@ -1,5 +1,5 @@
 ---
-import FormattedDate from "../FormattedDate.astro";
+import FormattedDate from "./FormattedDate.astro";
 
 interface Props {
   Collection: any;
@@ -36,7 +36,7 @@ const IfIsFirstPage = CurrentPage > 1;
   {
     Posts.map((post:any) => (
       <article class="bg-sky-100 dark:bg-blue-950 px-4 py-2 rounded-xl">
-        <a href={`/blog/${post.slug}/`}>
+        <a href={`${Astro.url.pathname}/${post.slug}`}>
           <h4 class="text-2xl">{post.data.title}</h4>
           <p>{post.data.description}</p>
           <p class="date">

@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from "astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "../../../layouts/default.astro";
+import type { ContentCollectionKey } from "astro:content";
+
+
+export async function getStaticPaths() {
+	console.log(Astro.site.pathname)
+	//const isNavigatorInSpanish: boolean = Astro.site.URL.params.includes("/es");
+	//const blogCollection: ContentCollectionKey = isNavigatorInSpanish ? "es" : "en";
+	const posts = await getCollection('en');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost>

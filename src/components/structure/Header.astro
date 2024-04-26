@@ -1,5 +1,5 @@
 ---
-import HeaderLink from "../HeaderLink.astro";
+import HeaderLink from "../global/HeaderLink.astro";
 import { Image } from "astro:assets";
 import Logo from "../../assets/Logo.svg";
 import ButtonDarkMode from "../react/ButtonDarkMode";
@@ -56,18 +56,20 @@ const links_en = [
 ];
 
 const isNavigatorInSpanish = Astro.url.pathname.includes("/es");
+const blog_collection = isNavigatorInSpanish ? "es" : "en";
 const Links = isNavigatorInSpanish ? links_es : links_en;
-//const blog_collection = Astro.url.href.includes("/es") ? "blog_en" : "blog_es";
 
 //Get all posts for
-const Posts = (await getCollection("blog")).map((post: any, index: number) => {
-  const data = post.data;
-  return {
-    title: data.title,
-    description: data.description,
-    slug: post.slug,
-  };
-});
+const Posts = (await getCollection(blog_collection)).map(
+  (post: any, index: number) => {
+    const data = post.data;
+    return {
+      title: data.title,
+      description: data.description,
+      slug: post.slug,
+    };
+  }
+);
 ---
 
 <header>

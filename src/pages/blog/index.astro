@@ -1,6 +1,6 @@
 ---
-import BlogPage from "../components/pages/BlogPage.astro";
-import Layout from "../layouts/default.astro";
+import BlogPage from "../../components/pages/BlogPage.astro";
+import Layout from "../../layouts/default.astro";
 
 const translation = {
   h1_title: "Last entries",
@@ -15,5 +15,5 @@ const translation = {
   description="Lorem ipsum dolor sit amet"
   publication_date={new Date("August 08 2021")}
 >
-<BlogPage translation={translation}/>
+<BlogPage translation={translation} language="en"/>
 </Layout>

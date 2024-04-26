@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, class: className, ...props } = Astro.props;
+
+const { pathname } = Astro.url;
+
+let isActive = pathname.includes(href as string)
+if(pathname.length > 1){
+	if(href === '/') isActive = false;
+}
+
+/* 
+|| href === '/' + subpath?.[0];
+ */
+---
+
+<a href={href} class:list={[className, { "font-bold text-sky-300 ": isActive }]}  {...props} class="text-white">
+	<slot />
+</a>

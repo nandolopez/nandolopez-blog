@@ -1,0 +1,130 @@
+/*
+  INDIVIDUAL ELEMENTS
+ */
+
+:root {
+  --accent: #2337ff;
+  --accent-dark: #000d8a;
+}
+
+a {
+  @apply text-sky-300 font-bold
+  /* color: var(--accent); */;
+}
+a:hover {
+  /* color: var(--accent); */
+}
+dd{
+	@apply text-lg font-semibold
+}
+dl{
+	@apply max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 my-2
+}
+dt{
+	@apply mb-1 text-gray-500 md:text-lg dark:text-gray-400
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply mb-8 font-bold;
+}
+h1 {
+  @apply text-5xl;
+}
+h2 {
+  @apply text-4xl;
+}
+h3 {
+  @apply text-3xl;
+}
+h4 {
+  @apply text-2xl;
+}
+h5 {
+  @apply text-xl;
+}
+
+hr {
+  @apply h-1 my-8 bg-gray-200 border-0;
+}
+
+b,
+strong {
+  @apply font-bold;
+}
+
+img {
+  @apply w-auto h-full rounded-xl;
+}
+
+ol {
+  @apply list-disc;
+}
+
+ol,
+ul {
+  @apply ml-8 my-4;
+}
+
+p {
+  @apply my-4;
+}
+pre {
+  @apply my-2;
+}
+
+table {
+  @apply relative overflow-x-auto shadow-md sm:rounded-lg w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400;
+}
+
+td{
+	@apply px-6 py-4;
+}
+
+thead {
+  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+}
+
+tr {
+  @apply odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700;
+}
+
+th{
+	@apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+}
+
+ul {
+  @apply list-decimal;
+}
+
+code {
+  padding: 2px 5px;
+  /* background-color: rgb(var(--gray-light)); */
+  border-radius: 2px;
+}
+pre {
+  padding: 1.5em;
+  border-radius: 8px;
+}
+pre > code {
+  all: unset;
+}
+blockquote {
+  /* border-left: 4px solid var(--accent); */
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
+}
+hr {
+  border: none;
+  /* border-top: 1px solid rgb(var(--gray-light)); */
+}
+
+/*CLASSES*/
+
+.contains-task-list {
+  @apply list-none;
+}

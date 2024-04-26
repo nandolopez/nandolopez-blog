@@ -1,13 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 import PostList from "../global/PostList.astro";
-const Posts = await getCollection("blog");
+import type { ContentCollectionKey } from "astro:content";
 
 interface Props {
   translation: any;
+  language: ContentCollectionKey
 }
+const { translation, language } = Astro.props;
 
-const { translation } = Astro.props;
+const Posts = await getCollection(language);
 ---
 
 <h1 class="text-4xl font-bold">{translation.h1_title}</h1>
