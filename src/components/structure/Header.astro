@@ -86,7 +86,7 @@ const Posts = (await getCollection(blog_collection)).map(
 
     <input type="checkbox" class="peer hidden" id="navbar-open" />
     <label
-      class="bg-gradient-to-r from-teal-500 to-green-900 hover:from-teal-900 hover:to-cyan-500 bottom-48 border-4 fixed md:hidden opacity-70 p-3 right-20 rounded-full z-10"
+      class="bg-gradient-to-r from-teal-500 to-green-900 peer-checked:from-teal-900 peer-checked:to-cyan-500 bottom-16 border-4 fixed md:hidden opacity-90 p-3 right-8 rounded-full z-10"
       for="navbar-open"
     >
       <span class="sr-only">Open main menu</span>
@@ -94,7 +94,7 @@ const Posts = (await getCollection(blog_collection)).map(
     </label>
 
     <nav
-      class="bottom-72 bg-gradient-to-r from-cyan-300 to-indigo-800 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-80 peer-checked:mr-4 text-right right-14 rounded-xl z-10"
+      class="bottom-40 bg-gradient-to-r from-cyan-500 to-indigo-900 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-90 peer-checked:mr-0 text-right right-8 rounded-xl z-10"
     >
       {
         Links.map((link) => {

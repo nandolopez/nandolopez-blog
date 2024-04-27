@@ -1,9 +1,9 @@
 ---
-title: First entry
-description: first_post description
+title: This is a long entry for test how show a post with a long title with a high amount of text
+description: first_post description with a long description
 publication_date: 2024-04-01
 update_date: 2024-04-01
-thumbnail: logo.svg
+thumbnail: https://picsum.photos/960/500
 meta_title: Meta title
 meta_description: Meta description
 topic: topic
