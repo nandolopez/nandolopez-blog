@@ -14,7 +14,7 @@ let start: number = 10 * (CurrentPage - 1);
 
 if (CurrentPage < 1) start = 1;
 
-const End: number = start + 10;
+const End: number = start + 12;
 
 const Posts = Collection.slice(start, End).sort(
   (a: any, b: any) =>
@@ -37,7 +37,7 @@ const IfIsFirstPage = CurrentPage > 1;
     Posts.map((post: any) => (
       <article class="bg-gradient-to-r from-cyan-300 to-indigo-800 p-1 flex relative rounded-md">
         <figure class="bg-sky-100 dark:bg-blue-950 flex flex-col justify-end hover:opacity-80 relative rounded-md w-full ">
-          <img src={post.data.thumbnail} alt={post.data.thumbnail} class="absolute w-full h-full" />
+          <img src={post.data.thumbnail} alt={post.data.title} class="absolute w-full h-full" />
           <figcaption class="bg-white opacity-80 p-4 h-auto z-1">
             <a href={`${Astro.url.pathname}/${post.slug}`} >
               <h4 class="text-2xl mb-4">{post.data.title}</h4>

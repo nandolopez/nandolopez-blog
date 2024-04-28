@@ -72,45 +72,49 @@ const Posts = (await getCollection(blog_collection)).map(
 );
 ---
 
-<header>
-  <div
-    class="container mx-auto flex flex-wrap gap-4 justify-between items-center p-4 w-full"
+<header
+  class="md:bg-slate-900 md:dark:bg-transparent mx-auto flex flex-wrap gap-4 justify-between items-center p-4 w-full"
+>
+  <a href="/" class="w-auto">
+    <Image src={Logo} alt="Nando López" class="w-12 rounded-lg" />
+  </a>
+
+  <input type="checkbox" class="peer hidden" id="navbar-open" />
+  <label
+    class="bg-gradient-to-r from-teal-500 to-green-900 peer-checked:from-teal-900 peer-checked:to-cyan-500 bottom-16 border-4 fixed md:hidden opacity-90 p-3 right-8 rounded-full z-10"
+    for="navbar-open"
   >
-    <a href="/" class="w-auto">
-      <Image
-        src={Logo}
-        alt="A description of my image."
-        class="w-12 rounded-lg"
-      />
-    </a>
+    <span class="sr-only">Open main menu</span>
+    <img src={MenuIcon.src} alt="Open menu" class="w-12" />
+  </label>
 
-    <input type="checkbox" class="peer hidden" id="navbar-open" />
-    <label
-      class="bg-gradient-to-r from-teal-500 to-green-900 peer-checked:from-teal-900 peer-checked:to-cyan-500 bottom-16 border-4 fixed md:hidden opacity-90 p-3 right-8 rounded-full z-10"
-      for="navbar-open"
-    >
-      <span class="sr-only">Open main menu</span>
-      <img src={MenuIcon.src} alt="Open menu" class="w-12" />
-    </label>
-
-    <nav
-      class="bottom-40 bg-gradient-to-r from-cyan-500 to-indigo-900 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-90 peer-checked:mr-0 text-right right-8 rounded-xl z-10"
-    >
-      {
-        Links.map((link) => {
-          return (
-            <HeaderLink class="block md:p-0 px-4" href={link.href}>
-              {link.link}
-            </HeaderLink>
-          );
-        })
-      }
-    </nav>
-    <SearchComponent client:load posts={Posts} />
+  <nav
+    class="bottom-40 bg-gradient-to-r from-cyan-500 to-indigo-900 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-90 peer-checked:mr-0 text-right right-8 rounded-xl z-10"
+  >
+    {
+      Links.map((link) => {
+        return (
+          <HeaderLink class="block md:p-0 px-4" href={link.href}>
+            {link.link}
+          </HeaderLink>
+        );
+      })
+    }
+  </nav>
+  <SearchComponent client:load posts={Posts} />
+  <div class="flex gap-4 items-center justify-center md:w-auto w-full">
     <ButtonDarkMode client:load />
-    <div class="flex gap-4 items-center justify-center md:w-auto w-full">
-      <a href="/" class:list={[{ "font-bold": !isNavigatorInSpanish }]}> EN</a> |
-      <a href="/es" class:list={[{ "font-bold": isNavigatorInSpanish }]}> ES</a>
-    </div>
+    <a
+      href="/"
+      class:list={[{ "font-bold text-white": !isNavigatorInSpanish }]}
+    >
+      EN</a
+    > |
+    <a
+      href="/es"
+      class:list={[{ "font-bold text-white": isNavigatorInSpanish }]}
+    >
+      ES</a
+    >
   </div>
 </header>

@@ -54,7 +54,7 @@ const SearchComponent = ({ posts }: any) => {
         />
         <img
           src={SearchIcon.src}
-          alt="A description of my image."
+          alt="Search"
           className="right-2 top-2 absolute max-w-6"
         />
 

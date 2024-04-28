@@ -3,7 +3,7 @@ title: Primera entrada, esto es un ejemplo de una entrada con un título largo p
 description: first_post description
 publication_date: 2024-04-01
 update_date: 2024-04-01
-thumbnail: logo.svg
+thumbnail: https://picsum.photos/960/500
 meta_title: Meta title
 meta_description: Meta description
 topic: topic
