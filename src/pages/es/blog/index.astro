@@ -1,19 +1,37 @@
 ---
-import BlogPage from "../../../components/pages/BlogPage.astro";
-import Layout from "../../../layouts/default.astro";
+import { getCollection } from "astro:content";
+import BlogPage from "../../components/pages/BlogPage.astro";
+import Layout from "../../layouts/default.astro";
 
 const translation = {
-  h1_title: "Últimas publicaciones",
-  h2_subtitle:"I'm expert in craft amazing sites with modern javascript technologies",
-  btnNext: "Ver publicaciones más antiguas",
-  btnBack: "Volver a publicaciones más recientes",
+  h1_title: "Last entries",
+  h2_subtitle:
+    "I'm expert in craft amazing sites with modern javascript technologies",
+  btnNext: "See more old entries",
+  btnBack: "Back to recent entries",
+};
+
+const page = {
+  data: await getCollection("blog", (entry) => entry.data.language === "en"),
+  url:{
+    prev: null,
+    next: "/blog"
+  }
+};
+
+if(page.data.length > 12){
+  page.url.next = "/blog/2"
 }
+page.data = page.data.splice(0,12)
+ 
 ---
 
 <Layout
   title="About Me"
   description="Lorem ipsum dolor sit amet"
-  publication_date={new Date("August 08 2021")}
+  publication_date={new Date()}
+  language="en"
+  index={false}
 >
-<BlogPage translation={translation} language={"es"}/>
+  <BlogPage translation={translation} page={page} />
 </Layout>

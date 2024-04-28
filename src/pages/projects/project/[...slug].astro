@@ -8,7 +8,7 @@ import Layout from "../../../layouts/default.astro";
 export async function getStaticPaths() {
 	// Getting all posts in english
 	const Posts = await getCollection(
-		"blog",
+		"projects",
 		(entry) => entry.data.language === "en"
 	);
 	// Finding the post using the Astro documented way
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 	}));
 }
 
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'projects'>;
 const post = Astro.props;
 const { Content } = await post.render();
 

@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BlogPage from "../../../components/pages/BlogPage.astro";
+import Layout from "../../../layouts/default.astro";
+
+const translation = {
+  h1_title: "Last entries",
+  h2_subtitle:
+    "I'm expert in craft amazing sites with modern javascript technologies",
+  btnNext: "See more old entries",
+  btnBack: "Back to recent entries",
+};
+
+
+export const getStaticPaths = (async ({paginate}) => {
+  const Posts = await getCollection(
+    "projects",
+    (entry) => entry.data.language === "es"
+  );
+
+  return paginate(Posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+---
+
+<Layout
+  title=`Nando López - Projects (${page.currentPage})`
+  `
+  description="Lorem ipsum dolor sit amet"
+  publication_date={new Date()}
+  language="en"
+  index={false}
+>
+
+  <BlogPage
+    translation={translation}
+    page={page}
+  />
+</Layout>

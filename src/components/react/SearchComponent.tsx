@@ -1,9 +1,20 @@
 import { useState } from "react";
 import SearchIcon from "../../assets/SearchIcon.svg";
 
+
+/**
+ * 
+ * @param param post: list of posts to find
+ * 
+ * @returns  Search input component and wrapper to show the results
+ * 
+ */
 const SearchComponent = ({ posts }: any) => {
+
+  // Array of posts to save the search results
   const [query, setQuery] = useState<any[]>([]);
 
+  // For hidden the "x" for delete the content in this case dirt the view
   const onBlurSearchInput = () => {
     document.getElementById("searchResults")?.classList.add("hidden");
   };
@@ -11,6 +22,15 @@ const SearchComponent = ({ posts }: any) => {
     document.getElementById("searchResults")?.classList.remove("hidden");
   };
 
+
+  /**
+   * 
+   * @param event Search input Event
+   * 
+   * 1. Check that has something wrote in search input
+   * 2. If has something, find in posts setting the search term and parameters
+   * in low case.
+   */
   const onchange = (event: any) => {
     const input = event.target.value.toLowerCase();
 
@@ -28,11 +48,15 @@ const SearchComponent = ({ posts }: any) => {
     setQuery(results);
   };
 
+  /**
+   * Viewer of search results for some reason react give errors setting in the code
+   * the best solution was abstract it in a variable
+   */
   const showQueryResults = query.map((post: any, index: number) => {
     return (
       <a
         key={index}
-        href={`/blog/post/${post.slug}`}
+        href={`/blog/post/${post.slug}w-`}
         className="border-b-2 border-b-slate-700 hover:bg-indigo-900 hover:text-white p-4 rounded"
       >
         <h4>{post.title}</h4>
@@ -40,7 +64,7 @@ const SearchComponent = ({ posts }: any) => {
       </a>
     );
   });
-
+  
   return (
     <div className="flex flex-col relative">
       <div className="bg-gradient-to-r from-cyan-300 to-indigo-800 p-0.5 flex relative rounded-md">

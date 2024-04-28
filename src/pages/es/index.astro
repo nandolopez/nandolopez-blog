@@ -3,18 +3,21 @@ import HomePage from "../../components/pages/HomePage.astro";
 import Layout from "../../layouts/default.astro";
 
 const translation = {
-  h1_title: "🙋🏻‍♂️ Bienvenido/a a mi portfolio",
-  h2_subtitle:"Soy experto en crear sitios increíbles utilizando tecnologías modernas",
-  btn_projects: "Mis proyectos",
-  btn_blog: "Échale un ojo a mi blog",
-  btn_contact: "¿Hablamos?",
-}
+  h1_title: "🙋🏻‍♂️ Wellcome to my portfolio",
+  h2_subtitle:
+    "I'm expert in craft amazing sites with modern javascript technologies",
+  btn_projects: "See my projects",
+  btn_blog: "take a look to my blog",
+  btn_contact: "let's talk",
+};
 ---
 
 <Layout
-  title="Nando López - Web developer"
-  description="Web developer frontend expert in user interface"
-  publication_date={new Date('2024-04-23')}
+  title="Fernando López de Lerma Portfolio"
+  description="Lorem ipsum dolor sit amet"
+  publication_date={new Date()}
+  index={true}
+  language="es"
 >
-<HomePage translation={translation}/>
+  <HomePage translation={translation} />
 </Layout>

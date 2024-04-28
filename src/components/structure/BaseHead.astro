@@ -2,6 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 
+import { ViewTransitions } from "astro:transitions";
 import "../../styles/global.css";
 
 interface Props {
@@ -44,7 +45,6 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
   crossorigin
 />
 
-
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
@@ -66,6 +66,9 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<ViewTransitions />
+
 <script>
   /**
    * LIGHT / DARK MODE LOGIC
@@ -76,19 +79,26 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     "(prefers-color-scheme: dark)"
   ).matches;
 
-  // We asume at first time that user is light mode
-  document.documentElement.classList.remove("dark");
-
   // If have a preference for previous access, set the preference
   if (localStorage.getItem("DarkMode") !== null)
     isDarkMode = localStorage.getItem("DarkMode") === "true";
 
-  // If dark mode is active...
-  if (isDarkMode) {
-    //Set dark mode
-    window.document.documentElement.classList.add("dark");
-  }
+  
+  const setDarkMode = (darkmode: boolean) => {
+    // We asume at first time that user is light mode
+    document.documentElement.classList.remove("dark");
+    // If dark mode is active...
+    if (darkmode) {
+      //Set dark mode
+      window.document.documentElement.classList.add("dark");
+    }
+    //Saving dark mode status
+    localStorage.setItem("DarkMode", darkmode.toString());
+  };
+  
+  // Check if enable or not the dark mode
+  setDarkMode(isDarkMode)
 
-  //Saving dark mode status
-  localStorage.setItem("DarkMode", isDarkMode.toString());
+  // this is for recover the back mode for Astro view transitions
+  document.addEventListener("astro:after-swap", ()=>setDarkMode(isDarkMode));
 </script>

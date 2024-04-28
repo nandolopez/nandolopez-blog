@@ -1,4 +1,5 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import BlogPage from "../../components/pages/BlogPage.astro";
 import Layout from "../../layouts/default.astro";
@@ -11,27 +12,31 @@ const translation = {
   btnBack: "Back to recent entries",
 };
 
-const page = {
-  data: await getCollection("blog", (entry) => entry.data.language === "en"),
-  url:{
-    prev: null,
-    next: "/blog"
-  }
-};
 
-if(page.data.length > 12){
-  page.url.next = "/blog/2"
-}
-page.data = page.data.splice(0,12)
- 
+export const getStaticPaths = (async ({paginate}) => {
+  const Posts = await getCollection(
+    "blog",
+    (entry) => entry.data.language === "en"
+  );
+
+  return paginate(Posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
 ---
 
 <Layout
-  title="About Me"
+  title=`Nando López - BLog (${page.currentPage})`
+  `
   description="Lorem ipsum dolor sit amet"
   publication_date={new Date()}
   language="en"
   index={false}
 >
-  <BlogPage translation={translation} page={page} />
+
+  <BlogPage
+    translation={translation}
+    page={page}
+  />
 </Layout>

@@ -12,22 +12,22 @@ const translation = {
 };
 
 const page = {
-  data: await getCollection("blog", (entry) => entry.data.language === "en"),
+  data: await getCollection("projects", (entry) => entry.data.language === "en"),
   url:{
     prev: null,
-    next: "/blog"
+    next: "/projects"
   }
 };
 
 if(page.data.length > 12){
-  page.url.next = "/blog/2"
+  page.url.next = "/projects/2"
 }
 page.data = page.data.splice(0,12)
  
 ---
 
 <Layout
-  title="About Me"
+  title="Projects"
   description="Lorem ipsum dolor sit amet"
   publication_date={new Date()}
   language="en"
