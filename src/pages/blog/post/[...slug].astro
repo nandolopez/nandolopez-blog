@@ -4,22 +4,25 @@ import Layout from "../../../layouts/default.astro";
 
 export async function getStaticPaths() {
 
-	const posts = await getCollection('en');
-	return posts.map((post) => ({
+	const Posts = await getCollection(
+    "blog",
+		(entry) => entry.data.language === "en"
+	);
+	return Posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));
 }
 
-type Props = CollectionEntry<'en'>;
+type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await post.render();
 
 ---
 
 <Layout {...post.data}>
-	<div class="bg-gradient-to-r from-cyan-300 to-indigo-800 p-1 flex relative rounded-md">
-		<article class="container bg-sky-100 dark:bg-slate-900 p-4 rounded-xl">
+	<div class="bg-gradient-to-r from-cyan-300 to-indigo-800 container flex mx-auto p-1 relative rounded-md">
+		<article class="bg-sky-100 dark:bg-slate-900 p-4 rounded-xl w-full">
 			<Content />
 		</article>
 	</div>

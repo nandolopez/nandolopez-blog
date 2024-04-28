@@ -32,7 +32,7 @@ const SearchComponent = ({ posts }: any) => {
     return (
       <a
         key={index}
-        href={`/blog/${post.slug}/`}
+        href={`/blog/post/${post.slug}`}
         className="border-b-2 border-b-slate-700 hover:bg-indigo-900 hover:text-white p-4 rounded"
       >
         <h4>{post.title}</h4>
