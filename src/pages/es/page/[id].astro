@@ -1,21 +1,20 @@
 ---
 import type { GetStaticPaths } from "astro";
-import PostList from "../../components/global/PostList.astro";
 import Layout from "../../layouts/default.astro";
 import { getCollection } from "astro:content";
 
 const {id} = Astro.params
-export async function getStaticPaths() {
-	
-	const NumberOFPosts = (await getCollection("blog")).length;
-	const TotalPages = Math.ceil(NumberOFPosts / 10);
+export const getStaticPaths = ( async () => {
+  
+  const NumberOFPosts = (await getCollection("blog")).length;
+  const TotalPages = Math.ceil(NumberOFPosts / 12);
   const pages = [...Array(TotalPages).keys()]
-
+  
   return pages.map(((i)=>{
     return { params: { id: i + 1 } };
   }))
-
-}
+  
+}) satisfies GetStaticPaths;
 ---
 
 <Layout

@@ -49,7 +49,6 @@ const SearchComponent = ({ posts }: any) => {
           onChange={($event) => onchange($event)}
           onBlur={onBlurSearchInput}
           onFocus={onFocusSearchInput}
-          list="query"
           className="bg-slate-950 px-4 py-2 rounded-md text-slate-300"
         />
         <img

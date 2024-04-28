@@ -1,11 +1,11 @@
 ---
-import HeaderLink from "../global/HeaderLink.astro";
+import ButtonDarkMode from "../react/ButtonDarkMode";
+import HeaderLinkComponent from "../global/HeaderLinkComponent.astro";
 import { Image } from "astro:assets";
 import Logo from "../../assets/Logo.svg";
-import ButtonDarkMode from "../react/ButtonDarkMode";
+import MenuIcon from "../../assets/Menu.svg";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
-import MenuIcon from "../../assets/Menu.svg";
 
 // Menu translations
 
@@ -60,7 +60,7 @@ const blog_collection = isNavigatorInSpanish ? "es" : "en";
 const Links = isNavigatorInSpanish ? links_es : links_en;
 
 //Get all posts for
-const Posts = (await getCollection(blog_collection)).map(
+const Posts = (await getCollection("blog",(entry)=>entry.data.language === blog_collection)).map(
   (post: any, index: number) => {
     const data = post.data;
     return {
@@ -77,6 +77,7 @@ const Posts = (await getCollection(blog_collection)).map(
 >
   <a href="/" class="w-auto">
     <Image src={Logo} alt="Nando López" class="w-12 rounded-lg" />
+    
   </a>
 
   <input type="checkbox" class="peer hidden" id="navbar-open" />
@@ -94,9 +95,9 @@ const Posts = (await getCollection(blog_collection)).map(
     {
       Links.map((link) => {
         return (
-          <HeaderLink class="block md:p-0 px-4" href={link.href}>
+          <HeaderLinkComponent class="block md:p-0 px-4" href={link.href}>
             {link.link}
-          </HeaderLink>
+          </HeaderLinkComponent>
         );
       })
     }
@@ -106,13 +107,20 @@ const Posts = (await getCollection(blog_collection)).map(
     <ButtonDarkMode client:load />
     <a
       href="/"
-      class:list={[{ "font-bold text-white": !isNavigatorInSpanish }]}
+      class:list={[
+        { "font-bold": !isNavigatorInSpanish },
+        { "font-bold text-white": isNavigatorInSpanish },
+        ]}
     >
       EN</a
     > |
     <a
       href="/es"
-      class:list={[{ "font-bold text-white": isNavigatorInSpanish }]}
+      class:list={[
+        { "font-bold": isNavigatorInSpanish },
+        { "font-bold text-white": !isNavigatorInSpanish },
+        ]},
+
     >
       ES</a
     >

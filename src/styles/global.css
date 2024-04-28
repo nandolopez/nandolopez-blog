@@ -2,9 +2,31 @@
   INDIVIDUAL ELEMENTS
  */
 
-:root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Bold.ttf') format('ttf');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Playfair';
+	src: url('/fonts/Playfair_144pt-SemiBold.ttf') format('ttf');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'OpenSans';
+	src: url('/fonts/OpenSans-Regular.ttf') format('ttf');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+body{
+  font-family: 'OpenSans', sans-serif;
 }
 
 a {
@@ -15,13 +37,13 @@ a:hover {
   /* color: var(--accent); */
 }
 dd{
-	@apply text-lg font-semibold
+  @apply text-lg font-semibold
 }
 dl{
-	@apply max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 my-2
+  @apply max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 my-2
 }
 dt{
-	@apply mb-1 text-gray-500 md:text-lg dark:text-gray-400
+  @apply mb-1 text-gray-500 md:text-lg dark:text-gray-400
 }
 h1,
 h2,
@@ -29,6 +51,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Poppins', sans-serif;
   @apply mb-8 font-bold;
 }
 h1 {

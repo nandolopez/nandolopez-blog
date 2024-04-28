@@ -6,6 +6,8 @@ const blogCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
+		language: z.string(),
+		index: z.boolean(),
 		publication_date: z.coerce.date(),
 		update_date: z.coerce.date().optional(),
 		thumbnail: z.string().optional(),
@@ -17,7 +19,4 @@ const blogCollection = defineCollection({
 	}),
 });
 
-export const collections = { 
-	es: blogCollection,
-	en: blogCollection
- };
+export const collections = { "blog": blogCollection };

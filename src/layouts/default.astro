@@ -4,9 +4,12 @@ import BaseHead from "../components/structure/BaseHead.astro";
 import Header from "../components/structure/Header.astro";
 import Footer from "../components/structure/Footer.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"]
+
+
 
 const { title, description } = Astro.props;
+
 ---
 
 <html lang="en">
@@ -18,7 +21,7 @@ const { title, description } = Astro.props;
     <div class="box-content flex flex-col justify-between items-center min-h-dvh mx-auto w-full">
       <Header class="h-10" />
       <main
-        class="container flex flex-col p-4 h-full"
+        class="flex flex-col p-4 w-full"
       >
         <slot />
       </main>

@@ -4,17 +4,20 @@ import Layout from "../layouts/default.astro";
 
 const translation = {
   h1_title: "🙋🏻‍♂️ Wellcome to my portfolio",
-  h2_subtitle:"I'm expert in craft amazing sites with modern javascript technologies",
+  h2_subtitle:
+    "I'm expert in craft amazing sites with modern javascript technologies",
   btn_projects: "See my projects",
   btn_blog: "take a look to my blog",
   btn_contact: "let's talk",
-}
+};
 ---
 
 <Layout
-  title="About Me"
+  title="Fernando López de Lerma Portfolio"
   description="Lorem ipsum dolor sit amet"
   publication_date={new Date("August 08 2021")}
+  index={true}
+  language="en"
 >
-<HomePage translation={translation}/>
+  <HomePage translation={translation} />
 </Layout>

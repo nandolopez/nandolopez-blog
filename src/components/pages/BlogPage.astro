@@ -1,19 +1,45 @@
 ---
-import { getCollection } from "astro:content";
-import PostList from "../global/PostList.astro";
-import type { ContentCollectionKey } from "astro:content";
+import FormattedDate from "../global/FormattedDate.astro";
 
 interface Props {
   translation: any;
-  language: ContentCollectionKey
+  page: any;
 }
-const { translation, language } = Astro.props;
-
-const Posts = await getCollection(language);
+const { translation, page } = Astro.props;
 ---
 
-<h1 class="text-4xl font-bold">{translation.h1_title}</h1>
-<h2 class="text-3xl">{translation.h2_subtitle}</h2>
-<div class="container mx-auto">
-  <PostList Collection={Posts} />
+<div class="md:w-2/3 mx-auto w-full">
+  <h1 class="text-4xl font-bold">{translation.h1_title}</h1>
+  <h2 class="text-3xl">{translation.h2_subtitle}</h2>
+  <div class="container mx-auto">
+    <section
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full"
+    >
+      {
+        page.data.map((post: any) => (
+          <article class="bg-gradient-to-r from-cyan-300 to-indigo-800 p-1 flex relative rounded-md">
+            <figure class="bg-sky-100 dark:bg-blue-950 flex flex-col justify-end hover:opacity-80 relative rounded-md w-full ">
+              <img
+                src={post.data.thumbnail}
+                alt={post.data.title}
+                class="absolute w-full h-full"
+              />
+              <figcaption class="bg-white opacity-80 p-4 h-auto z-1">
+                <a href={`/blog/post/${post.slug}`}>
+                  <h4 class="text-2xl mb-4">{post.data.title}</h4>
+                  <p class="text-slate-900">
+                    <FormattedDate date={post.data.publication_date} />
+                  </p>
+                </a>
+              </figcaption>
+            </figure>
+          </article>
+        ))
+      }
+    </section>
+    <div class="flex justify-between w-full">
+      {page.url.prev ? <a href={page.url.prev}>{translation.btnBack}</a> : null}
+      {page.url.next ? <a href={page.url.next}>{translation.btnNext}</a> : null}
+    </div>
+  </div>
 </div>
