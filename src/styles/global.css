@@ -21,10 +21,6 @@ body {
 
 a {
   @apply text-sky-300 font-bold
-  /* color: var(--accent); */;
-}
-a:hover {
-  /* color: var(--accent); */
 }
 dd {
   @apply text-lg font-semibold;
@@ -109,7 +105,6 @@ ul {
 
 code {
   padding: 2px 5px;
-  /* background-color: rgb(var(--gray-light)); */
   border-radius: 2px;
 }
 pre {
@@ -120,14 +115,12 @@ pre > code {
   all: unset;
 }
 blockquote {
-  /* border-left: 4px solid var(--accent); */
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;
 }
 hr {
   border: none;
-  /* border-top: 1px solid rgb(var(--gray-light)); */
 }
 
 /*CLASSES*/
