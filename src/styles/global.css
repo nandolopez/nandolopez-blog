@@ -2,31 +2,21 @@
   INDIVIDUAL ELEMENTS
  */
 
-
 @font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Bold.ttf') format('ttf');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf") format("ttf");
 }
 @font-face {
-	font-family: 'Playfair';
-	src: url('/fonts/Playfair_144pt-SemiBold.ttf') format('ttf');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Playfair";
+  src: url("/fonts/Playfair_144pt-SemiBold.ttf") format("ttf");
 }
 @font-face {
-	font-family: 'OpenSans';
-	src: url('/fonts/OpenSans-Regular.ttf') format('ttf');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  font-family: "OpenSans";
+  src: url("/fonts/OpenSans-Regular.ttf") format("ttf");
 }
 
-body{
-  font-family: 'OpenSans', sans-serif;
+body {
+  font-family: "OpenSans", sans-serif;
 }
 
 a {
@@ -36,14 +26,14 @@ a {
 a:hover {
   /* color: var(--accent); */
 }
-dd{
-  @apply text-lg font-semibold
+dd {
+  @apply text-lg font-semibold;
 }
-dl{
-  @apply max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 my-2
+dl {
+  @apply max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 my-2;
 }
-dt{
-  @apply mb-1 text-gray-500 md:text-lg dark:text-gray-400
+dt {
+  @apply mb-1 text-gray-500 md:text-lg dark:text-gray-400;
 }
 h1,
 h2,
@@ -51,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   @apply mb-8 font-bold;
 }
 h1 {
@@ -64,6 +54,7 @@ h3 {
   @apply text-3xl;
 }
 h4 {
+  font-family: "Playfair", sans-serif;
   @apply text-2xl;
 }
 h5 {
@@ -71,7 +62,7 @@ h5 {
 }
 
 hr {
-  @apply h-1 my-8 bg-gray-200 border-0;
+  @apply h-1 my-8 bg-gray-200 max-w-80 border-0 md:max-w-full;
 }
 
 b,
@@ -80,7 +71,7 @@ strong {
 }
 
 img {
-  @apply w-auto rounded-xl box-content;
+  @apply block max-w-80 h-auto box-border;
 }
 
 ol {
@@ -96,27 +87,20 @@ p {
   @apply my-4;
 }
 pre {
-  @apply my-2;
+  @apply my-2 overflow-x-scroll max-w-80 md:max-w-full;
 }
 
 table {
-  @apply relative overflow-x-auto shadow-md sm:rounded-lg w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400;
+  @apply table table-auto w-full overflow-scroll;
 }
-
-td{
-	@apply px-6 py-4;
+th {
+  @apply bg-slate-700  py-2;
 }
-
-thead {
-  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+td {
+  @apply border-y py-2;
 }
-
 tr {
-  @apply odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700;
-}
-
-th{
-	@apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
+  @apply odd:bg-slate-600;
 }
 
 ul {

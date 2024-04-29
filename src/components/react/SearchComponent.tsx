@@ -14,15 +14,6 @@ const SearchComponent = ({ posts }: any) => {
   // Array of posts to save the search results
   const [query, setQuery] = useState<any[]>([]);
 
-  // For hidden the "x" for delete the content in this case dirt the view
-  const onBlurSearchInput = () => {
-    document.getElementById("searchResults")?.classList.add("hidden");
-  };
-  const onFocusSearchInput = () => {
-    document.getElementById("searchResults")?.classList.remove("hidden");
-  };
-
-
   /**
    * 
    * @param event Search input Event
@@ -33,9 +24,10 @@ const SearchComponent = ({ posts }: any) => {
    */
   const onchange = (event: any) => {
     const input = event.target.value.toLowerCase();
+    document.getElementById("searchResults")?.classList.add("hidden");
 
     //make disappear search results if search input is clean
-    if (input.length === 0) onBlurSearchInput();
+    if (input.length > 0) document.getElementById("searchResults")?.classList.remove("hidden");
 
     const results = posts.filter((element: any) => {
       return (
@@ -48,6 +40,13 @@ const SearchComponent = ({ posts }: any) => {
     setQuery(results);
   };
 
+  // Accomodation of URL for the languages
+  let isNavigatorInSpanish = false
+  if (typeof window !== "undefined") {
+    isNavigatorInSpanish = window.location.href.includes("/es");
+  }
+  const postlink = isNavigatorInSpanish ? '/blog/post/es' : '/blog/post/'
+
   /**
    * Viewer of search results for some reason react give errors setting in the code
    * the best solution was abstract it in a variable
@@ -56,8 +55,8 @@ const SearchComponent = ({ posts }: any) => {
     return (
       <a
         key={index}
-        href={`/blog/post/${post.slug}w-`}
-        className="border-b-2 border-b-slate-700 hover:bg-indigo-900 hover:text-white p-4 rounded"
+        href={postlink + post.slug}
+        className="border-b-2 border-b-slate-700 hover:bg-indigo-900 hover:text-white p-4 rounded z-20"
       >
         <h4>{post.title}</h4>
         <p>{post.description}</p>
@@ -71,8 +70,6 @@ const SearchComponent = ({ posts }: any) => {
         <input
           type="search"
           onChange={($event) => onchange($event)}
-          onBlur={onBlurSearchInput}
-          onFocus={onFocusSearchInput}
           className="bg-slate-950 px-4 py-2 rounded-md text-slate-300"
         />
         <img
