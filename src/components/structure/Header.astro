@@ -61,7 +61,7 @@ const Links = isNavigatorInSpanish ? links_es : links_en;
 
 //Get all posts for
 const Posts = (await getCollection("blog",(entry)=>entry.data.language === blog_collection)).map(
-  (post: any, index: number) => {
+  (post: any) => {
     const data = post.data;
     return {
       title: data.title,
