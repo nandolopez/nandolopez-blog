@@ -10,13 +10,13 @@ const PageInfo = {
     description: "",
     index: true,
     date: new Date(),
-    language: "en",
+    language: "es",
   },
   i18n:{
     // Translation
     Title: "🙋🏻‍♂️ Wellcome to my Blog",
     LongDescription: "Here going the long desription",
-    link_post: "/post/",
+    link_post: "/es/post",
     link_prev: "See newest posts",
     link_next: "See old posts"
   }
@@ -26,7 +26,7 @@ const PageInfo = {
 export const getStaticPaths = (async ({ paginate }) => {
   const Posts: any = await getCollection(
     "blog",
-    (entry: any) => entry.data.language === "en"
+    (entry: any) => entry.data.language === "es"
   );
   return paginate(Posts, { pageSize: 12 });
 }) satisfies GetStaticPaths;

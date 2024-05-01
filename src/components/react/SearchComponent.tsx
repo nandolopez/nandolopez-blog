@@ -45,7 +45,7 @@ const SearchComponent = ({ posts }: any) => {
   if (typeof window !== "undefined") {
     isNavigatorInSpanish = window.location.href.includes("/es");
   }
-  const postlink = isNavigatorInSpanish ? '/blog/post/es' : '/blog/post/'
+  const postlink = isNavigatorInSpanish ? '/es/post/' : '/post/'
 
   /**
    * Viewer of search results for some reason react give errors setting in the code

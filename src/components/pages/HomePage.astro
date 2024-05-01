@@ -17,9 +17,9 @@ const { info } = Astro.props;
 >
 
 <div
-  class="flex flex-col h-full gap-4 justify-around items-center mb-4 md:flex-row px-8 w-full"
+  class="flex flex-col gap-4 justify-around items-center mb-4 md:flex-row px-8 md:p-0 w-full"
 >
-  <article class="flex flex-col gap-8 justify-center h-auto items-center justify-item pr-4 w-full">
+  <article class="flex flex-col gap-8 justify-center my-auto items-center justify-item">
     <h1 class="text-4xl font-bold">{info.i18n.Title}</h1>
     <h2 class="text-3xl">{info.i18n.LongDescription}</h2>
     <div

@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://nandolopez.github.io',
   build: {
-    format: "file",
+    format: "file"
   },
   integrations: [mdx(), sitemap(), tailwind(), react()]
 });

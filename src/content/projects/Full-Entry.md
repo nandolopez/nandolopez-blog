@@ -1,5 +1,5 @@
 ---
-title: Full Entry
+title: Full Entry with long title for test how works
 description: Descripcción de la entrada completa
 language: en
 index: true
@@ -9,7 +9,7 @@ thumbnail: https://picsum.photos/960/500
 meta_title: Título meta del cuarto post
 meta_description: Descripción meta del cuarto post
 topic: Js
-status: publicado
+status: published
 tags: cuarto_post
 ---
 # Headers
