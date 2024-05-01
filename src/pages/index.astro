@@ -1,23 +1,26 @@
 ---
 import HomePage from "../components/pages/HomePage.astro";
-import Layout from "../layouts/default.astro";
 
-const translation = {
-  h1_title: "🙋🏻‍♂️ Wellcome to my portfolio",
-  h2_subtitle:
-    "I'm expert in craft amazing sites with modern javascript technologies",
-  btn_projects: "See my projects",
-  btn_blog: "take a look to my blog",
-  btn_contact: "let's talk",
+const PageInfo = {
+  seo: {
+    // SEO information
+    title: "🙋🏻‍♂️ Wellcome to my portfolio",
+    description: "",
+    index: true,
+    date: new Date(),
+    language: "en",
+  },
+  i18n: {
+    // Translation
+    Title: "🙋🏻‍♂️ Wellcome to my portfolio",
+    LongDescription: "Here going the long desription",
+    links: [
+      { text: "Take a look to my project", href: "" },
+      { text: "Check my publications", href: "" },
+      { text: "Let's talk?", href: "" },
+    ],
+  },
 };
 ---
 
-<Layout
-  title="Fernando López de Lerma Portfolio"
-  description="Lorem ipsum dolor sit amet"
-  publication_date={new Date()}
-  index={true}
-  language="en"
->
-  <HomePage translation={translation} />
-</Layout>
+<HomePage info={PageInfo} />

@@ -1,12 +1,14 @@
 export interface IPostData {
     title: string;
     description: string;
-    slug:string;
-    meta_title:string;
-    meta_description:string;
-    topic:string
-    update_date: string;
-    tags: string;
-    thumbnail:string;
+    language: string;
+    index: boolean;
+    publication_date: Date | string;
+    update_date: Date | string;
+    thumbnail: string;
+    meta_title: string;
+    meta_description: string;
+    topic: string;
     status: string;
+    tags: string;
 }

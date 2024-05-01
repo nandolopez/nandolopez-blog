@@ -1,9 +1,7 @@
 export interface IPostData {
-    title: string;
-    description: string;
+    id:string,
+    body: string;
+    collection: string;
     slug:string;
-    meta_title:string;
-    meta_description:string;
-    topic:string
-    update_date: string
+    data:IPostData
 }

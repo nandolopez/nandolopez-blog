@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import PostsListsComponent from "../../../components/PostsListsComponent.astro";
+
+const PageInfo = {
+  seo:{
+    // SEO information
+    title: "🪧 Here you can see my posts",
+    description: "",
+    index: true,
+    date: new Date(),
+    language: "en",
+  },
+  i18n:{
+    // Translation
+    Title: "🙋🏻‍♂️ Wellcome to my Blog",
+    LongDescription: "Here going the long desription",
+    link_post: "/post/",
+    link_prev: "See newest posts",
+    link_next: "See old posts"
+  }
+
+};
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const Posts: any = await getCollection(
+    "blog",
+    (entry: any) => entry.data.language === "en"
+  );
+  return paginate(Posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<PostsListsComponent info={PageInfo} page={page} />¡

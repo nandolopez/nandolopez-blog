@@ -9,7 +9,7 @@ thumbnail: https://picsum.photos/960/500
 meta_title: Título meta del cuarto post
 meta_description: Descripción meta del cuarto post
 topic: Js
-status: publicado
+status: published
 tags: cuarto_post
 ---
 # Headers

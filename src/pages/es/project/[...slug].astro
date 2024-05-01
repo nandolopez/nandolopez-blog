@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import Layout from "../../../../layouts/default.astro";
+import Layout from "../../layouts/default.astro";
 
 /**
  * Get all post in english which slug match with URL one
@@ -9,10 +9,10 @@ export async function getStaticPaths() {
 	// Getting all posts in english
 	const Posts = await getCollection(
 		"projects",
-		(entry) => entry.data.language === "es"
+		(entry: any) => entry.data.language === "en"
 	);
 	// Finding the post using the Astro documented way
-	return Posts.map((post) => ({
+	return Posts.map((post: any) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));
@@ -20,13 +20,13 @@ export async function getStaticPaths() {
 
 type Props = CollectionEntry<'projects'>;
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content } = await (post as any).render();
 
 ---
 
 <Layout {...post.data}>
 	<div class="bg-gradient-to-r from-cyan-300 to-indigo-800 container flex mx-auto p-1 relative rounded-md">
-		<article class="bg-sky-100 dark:bg-slate-900 p-4 rounded-xl w-full">
+		<article class="bg-sky-100 dark:bg-slate-900 p-4 rounded-xl w-full" aria-label="page">
 			<Content />
 		</article>
 	</div>

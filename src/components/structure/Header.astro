@@ -1,9 +1,9 @@
 ---
 import ButtonDarkMode from "../react/ButtonDarkMode";
-import HeaderLinkComponent from "../global/HeaderLinkComponent.astro";
+import HeaderLinkComponent from "../HeaderLinkComponent.astro";
 import { Image } from "astro:assets";
-import Logo from "../../assets/Logo.svg";
-import MenuIcon from "../../assets/Menu.svg";
+import Logo from "../../assets/svg/Logo.svg";
+import MenuIcon from "../../assets/svg/Menu.svg";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
 
@@ -60,37 +60,41 @@ const blog_collection = isNavigatorInSpanish ? "es" : "en";
 const Links = isNavigatorInSpanish ? links_es : links_en;
 
 //Get all posts for
-const Posts = (await getCollection("blog",(entry)=>entry.data.language === blog_collection)).map(
-  (post: any) => {
-    const data = post.data;
-    return {
-      title: data.title,
-      description: data.description,
-      slug: post.slug,
-    };
-  }
-);
+const Posts = (
+  await getCollection(
+    "blog",
+    (entry: any) => entry.data.language === blog_collection
+  )
+).map((post: any) => {
+  const data = post.data;
+  return {
+    title: data.title,
+    description: data.description,
+    slug: post.slug,
+  };
+});
 ---
 
 <header
-  class="md:bg-slate-900 md:dark:bg-transparent mx-auto flex flex-wrap gap-4 justify-between items-center p-4 w-full"
+  class="md:bg-sky-800 md:dark:bg-sky-900 mx-auto flex flex-wrap gap-4 justify-between items-center p-4 mb-4 shadow shadow-slate-200 w-full"
 >
   <a href="/" class="w-auto">
     <Image src={Logo} alt="Nando López" class="w-12 rounded-lg" />
-    
   </a>
 
   <input type="checkbox" class="peer hidden" id="navbar-open" />
   <label
-    class="bg-gradient-to-r from-teal-500 to-green-900 peer-checked:from-teal-900 peer-checked:to-cyan-500 bottom-16 border-4 fixed md:hidden opacity-90 p-3 right-8 rounded-full z-10"
+    class="bg-gradient-to-r from-teal-500 to-green-900 peer-checked:from-teal-900 peer-checked:to-cyan-500 bottom-40 border-4 fixed md:hidden opacity-90 p-3 right-8 rounded-full z-20"
     for="navbar-open"
   >
     <span class="sr-only">Open main menu</span>
-    <img src={MenuIcon.src} alt="Open menu" class="w-12" />
+    <Image src={MenuIcon} alt="Open menu" class="w-12" />
   </label>
 
   <nav
-    class="bottom-40 bg-gradient-to-r from-cyan-500 to-indigo-900 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-90 peer-checked:mr-0 text-right right-8 rounded-xl z-10"
+    class="bottom-64 bg-gradient-to-r from-cyan-500 to-indigo-900 duration-1000 flex flex-col gap-4 fixed md:relative mr-[calc(-100%)] md:bg-none md:border-none md:bottom-auto md:flex-row md:mt-0 md:mb-auto md:mr-0 md:opacity-100 md:p-4 md:right-auto md:text-left md:z-0 py-4 transition-all opacity-90 peer-checked:mr-0 text-right right-8 rounded-xl z-20"
+    aria-controls="navbar-default"
+    aria-expanded="false"
   >
     {
       Links.map((link) => {
@@ -110,7 +114,7 @@ const Posts = (await getCollection("blog",(entry)=>entry.data.language === blog_
       class:list={[
         { "font-bold": !isNavigatorInSpanish },
         { "font-bold text-white": isNavigatorInSpanish },
-        ]}
+      ]}
     >
       EN</a
     > |
@@ -119,8 +123,8 @@ const Posts = (await getCollection("blog",(entry)=>entry.data.language === blog_
       class:list={[
         { "font-bold": isNavigatorInSpanish },
         { "font-bold text-white": !isNavigatorInSpanish },
-        ]},
-
+      ]}
+      ,
     >
       ES</a
     >

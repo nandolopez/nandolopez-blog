@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/default.astro'
+import FormattedDate from "./FormattedDate.astro";
+import Logo from "../assets/svg/Logo.svg";
+
+interface Props {
+  info: any;
+  page: any;
+  collection?: string
+}
+const { info, page } = Astro.props;
+console.log(page.url)
+---
+
+<Layout
+  title={info.seo.title}
+  description={info.seo.description}
+  publication_date={info.seo.date}
+  index={info.seo.index}
+  thumbnail={Logo.src}
+  language={info.seo.language}
+>
+<div class="mx-auto w-full">
+  <h1 class="text-4xl font-bold">{info.i18n.Title}</h1>
+  <p class="text-lg">{info.i18n.LongDescription}</p>
+  <div class="container flex flex-col justify-center justify-items-center w-full">
+    <section
+      class="flex flex-col md:flex-row flex-wrap gap-4 justify-between"
+    >
+      {
+        page.data.map((post: any) => (
+          <article class="bg-gradient-to-r from-cyan-300 to-indigo-800 h-64 p-1 flex md:max-w-72 relative rounded-md w-full">
+            <figure class="bg-sky-100 dark:bg-blue-950 flex flex-col justify-end hover:opacity-80 relative rounded-md w-full ">
+              <a href={`${info.i18n.link_post}/${post.slug}`} class="absolute w-full h-full">
+              <img
+                src={post.data.thumbnail}
+                alt={post.data.title}
+                class="w-full h-full"
+              />
+              </a>
+              <figcaption class="bg-white opacity-80 p-4 h-auto z-10">
+                <a href={`${info.i18n.link_post}/${post.slug}`}>
+                  <h4 class="text-2xl mb-4">{post.data.title}</h4>
+                  <p class="text-slate-900">
+                    <FormattedDate date={post.data.publication_date} />
+                  </p>
+              </figcaption>
+                </a>
+            </figure>
+          </article>
+        ))
+      }
+    </section>
+    <div class="flex flex-col justify-between md:flex-row my-4 text-lg">
+      {page.url.prev ? <a href={page.url.prev}>{info.i18n.link_prev}</a> : null}
+      {page.url.next ? <a href={page.url.next}>{info.i18n.link_next}</a> : null}
+    </div>
+  </div>
+</div>
+</Layout>
