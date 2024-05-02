@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/default.astro'
-import Logo from "../../assets/svg/Logo.svg";
+
 interface Props {
   info: any;
 }
@@ -12,7 +12,7 @@ const { info } = Astro.props;
   description={info.seo.description}
   publication_date={info.seo.date}
   index={info.seo.index}
-  thumbnail={Logo.src}
+  thumbnail="/public/svg_social/Logo.svg"
   language={info.seo.language}
 >
 

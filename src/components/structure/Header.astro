@@ -4,37 +4,37 @@ import NavbarLinkComponent from "../NavbarLinkComponent.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import SearchComponent from "../react/SearchComponent";
-import Logo from "../../assets/svg/Logo.svg";
+//import Logo from "../../assets/svg/Logo.svg";
 import MenuIcon from "../../assets/svg/Menu.svg";
 import HomeIcon from "../../assets/svg/HomeIcon.svg";
 import BlogIcon from "../../assets/svg/BlogIcon.svg";
 import ProjectIcon from "../../assets/svg/ProjectIcon.svg";
-import AboutIcon from "../../assets/svg/AboutIcon.svg";
 import SocialIcon from "../../assets/svg/SocialIcon.svg";
+import CV from "../../assets/svg/CV.svg";
 
 // Menu translations
 
 const DB_LINKS = {
   es: [
-    { link: "Inicio", href: "/es" },
-    { link: "Blog", href: "/es/blog" },
-    { link: "Proyectos", href: "/es/proyectos" },
-    { link: "Redes Sociales", href: "/contact" },
-    { link: "Sobre mi", href: "/es/sobre-mi" },
+    { link: "Inicio", href: "/es", title: "" },
+    { link: "Blog", href: "/es/blog", title: "" },
+    { link: "Proyectos", href: "/es/proyectos", title: "" },
+    { link: "Redes Sociales", href: "/contact", title: "" },
+    { link: "Descaarga mi CV", href: "/es/sobre-mi", title: "" },
   ],
   en: [
-    { link: "Home", href: "/" },
-    { link: "Blog", href: "/blog" },
-    { link: "Projects", href: "/projects" },
-    { link: "Social media", href: "/contact" },
-    { link: "About me", href: "/about" },
+    { link: "Home", href: "/", title: "" },
+    { link: "Blog", href: "/blog", title: "" },
+    { link: "Projects", href: "/projects", title: "" },
+    { link: "Social media", href: "/contact", title: "" },
+    { link: "Get my CV", href: "/cv", title: "" },
   ],
   icons: [
-    {src: HomeIcon.src, alt: "Home icon"},
-    {src: BlogIcon.src, alt: "Blog icon"},
-    {src: ProjectIcon.src, alt: "Project icon"},
-    {src: SocialIcon.src, alt: "Social icon"},
-    {src: AboutIcon.src, alt: "About icon"},
+    { src: HomeIcon.src, alt: "Home icon" },
+    { src: BlogIcon.src, alt: "Blog icon" },
+    { src: ProjectIcon.src, alt: "Project icon" },
+    { src: SocialIcon.src, alt: "Social icon" },
+    { src: CV.src, alt: "About icon" },
   ],
 };
 
@@ -62,7 +62,11 @@ const Posts = (
   class="bg-gradient-to-r from-cyan-300 to-indigo-800 mx-auto flex flex-wrap gap-4 justify-between items-center p-4 mb-4 rounded-b-3xl w-full"
 >
   <a href="/" class="w-auto">
-    <Image src={Logo} alt="Nando López" class="w-12 rounded-lg" />
+    <img
+      src="/public/svg_social/Logo.svg"
+      alt="Nando López"
+      class="w-12 rounded-lg"
+    />
   </a>
 
   <input type="checkbox" class="peer hidden" id="navbar-open" />
@@ -82,8 +86,16 @@ const Posts = (
     {
       Links.map((link, index: number) => {
         return (
-          <NavbarLinkComponent class="flex items-center gap-2 md:p-0 px-4 text-lg" href={link.href}>
-            <img src={DB_LINKS.icons[index].src} alt={DB_LINKS.icons[index].alt} class="md:w-6 w-4" /> {link.link}
+          <NavbarLinkComponent
+            class="flex items-center gap-2 md:p-0 px-4 text-lg"
+            href={link.href}
+          >
+            <img
+              src={DB_LINKS.icons[index].src}
+              alt={DB_LINKS.icons[index].alt}
+              class="md:w-6 w-4"
+            />{" "}
+            {link.link}
           </NavbarLinkComponent>
         );
       })
