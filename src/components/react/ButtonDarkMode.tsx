@@ -13,6 +13,7 @@ const ButtonDarkMode = () => {
    * Dark mode toggler
    */
   const onClickButtonToggleDarkMode = () => {
+    console.log('va')
     // change = oposite status fo darkmode
     const change = !darkMode
 

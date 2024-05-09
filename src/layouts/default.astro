@@ -11,7 +11,7 @@ import { social_medias } from "@/db/Social";
  */
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, thumbnail } = Astro.props;
+const { title, description, thumbnail, index } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -46,7 +46,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       type="font/ttf"
       crossorigin
     />
-
+    {index ? <meta name="robots" content="noindex"> : ""}
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
 
